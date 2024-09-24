@@ -1,7 +1,25 @@
-<IfModule mod_rewrite.c>
-  RewriteEngine On
-RewriteBase /
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^(.*)$ index.php [L,E=PATH_INFO:$1]
-</IfModule>
+[ISAPI_Rewrite]
+# 3600 = 1 hour
+CacheClockRate 3600
+RepeatLimit 32
+# 中文tag解决
+RewriteRule /tag/(.*) /index\.php\?tag=$1
+# sitemapxml
+RewriteRule /sitemap.xml /sitemap.xml [L]
+RewriteRule /favicon.ico /favicon.ico [L]
+# 内容页
+RewriteRule /(.*).html /index.php/$1.html [L]
+# 评论
+RewriteRule /(.*)/comment /index.php/$1/comment [L]
+# 分类页
+RewriteRule /category/(.*) /index.php/category/$1 [L]
+# 分页
+RewriteRule /page/(.*) /index.php/page/$1 [L]
+# 搜索页
+RewriteRule /search/(.*) /index.php/search/$1 [L]
+# feed
+RewriteRule /feed/(.*) /index.php/feed/$1 [L]
+# 日期归档
+RewriteRule /2(.*) /index.php/2$1 [L]
+# 上传图片等
+RewriteRule /action(.*) /index.php/action$1 [L]
