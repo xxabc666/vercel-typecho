@@ -1,8 +1,12 @@
 <IfModule mod_rewrite.c>
-RewriteEngine On
-# 下面是在根目录，文件夹要修改路径
+  RewriteEngine On
+
 RewriteBase /
+
 RewriteCond %{REQUEST_FILENAME} !-f
+
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^(.*)$ /index.php/$1 [L]
+
+RewriteRule ^(.*)$ index.php [L,E=PATH_INFO:$1]
+
 </IfModule>
